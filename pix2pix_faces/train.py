@@ -98,6 +98,9 @@ def train(generator,
 
  			fig.savefig('val_{}.png'.format(epoch))
 
+  # Guardar ultimo estado de la red.
+  checkpoint('./', generator, discriminator, epoch)
+
 # Direcciones a las imagenes.
 ROOT = args.ROOT
 INP = ROOT + '/' + args.INPUT
