@@ -13,7 +13,6 @@ class PIX2PIXloader(Dataset):
                name_list=None, 
                inp_dir=None, 
                out_dir=None, 
-               dim=(286,286), 
                transform=torchvision.transforms.ToTensor()):
     
     self.transform = transform

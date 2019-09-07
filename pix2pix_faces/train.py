@@ -16,6 +16,8 @@ parser.add_argument("--ROOT", default='./', type=str)
 parser.add_argument("--INPUT", default=None, type=str)
 parser.add_argument("--OUTPUT", default=None, type=str)
 parser.add_argument("--tr_per", default=0.8, type=float)
+parser.add_argument("--model", default=None, type=str)
+parser.add_argument("--max_epoch", default=0, type=float)
 
 args = parser.parse_args()
 
@@ -52,10 +54,11 @@ def train(generator,
           gen_opt = None,
           dis_opt = None,
           device = 'cpu', 
+          ini_epoch=0,
           max_epoch=1000,
           it_val=100):
   
- 	for epoch in range(max_epoch):
+ 	for epoch in range(ini_epoch, max_epoch):
  		generator.train()
  		discriminator.train()
  		for i, (inp, targ) in enumerate(train_loader):
@@ -157,6 +160,14 @@ in_channels, out_channels = 3, 3
 generator = Generator(in_channels, out_channels)
 discriminator = Discriminator(in_channels, out_channels)
 
+# If model is specified load model.
+ini_epoch = 0
+if model:
+  checkpoint = torch.load(args.model)
+  generator.load_state_dict(checkpoint['generator'], map_location='cpu')
+  discriminator.load_state_dict(checkpoint['discriminator'], map_location='cpu')
+  ini_epoch = checkpoint['epoch']
+
 generator.to(device)
 discriminator.to(device)
 
@@ -171,5 +182,6 @@ train(generator,
       gen_opt=gen_opt,
       dis_opt=dis_opt,
       device=device, 
+      ini_epoch=ini_epoch,
       max_epoch=1000,
       it_val=100)

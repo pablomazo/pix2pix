@@ -37,8 +37,11 @@ inp_im = transform(inp_im)
 # Evaluate generator:
 out_im = generator(inp_im.view(1,3,286,286))
 out_im = out_im[0]
-#plt.imshow(out_im.data.numpy().transpose(1,2,0))
-#plt.savefig('hola.jpg')
+
+fig, ax = plt.subplots(1,2)
+ax[0].imshow(inp_im.data.numpy().transpose(1,2,0))
+ax[1].imshow(out_im.data.numpy().transpose(1,2,0))
+plt.savefig('hola.jpg')
 
 # Return image to PIL object.
 transform = transforms = torchvision.transforms.Compose([
