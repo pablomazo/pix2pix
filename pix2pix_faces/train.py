@@ -162,11 +162,11 @@ discriminator = Discriminator(in_channels, out_channels)
 
 # If model is specified load model.
 ini_epoch = 0
-if model:
-  checkpoint = torch.load(args.model)
-  generator.load_state_dict(checkpoint['generator'], map_location='cpu')
-  discriminator.load_state_dict(checkpoint['discriminator'], map_location='cpu')
-  ini_epoch = checkpoint['epoch']
+if args.model:
+  checkpoint_file = torch.load(args.model, map_location='cpu')
+  generator.load_state_dict(checkpoint_file['generator'])
+  discriminator.load_state_dict(checkpoint_file['discriminator'])
+  ini_epoch = checkpoint_file['epoch']
 
 generator.to(device)
 discriminator.to(device)
