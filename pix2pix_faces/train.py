@@ -17,7 +17,7 @@ parser.add_argument("--INPUT", default=None, type=str)
 parser.add_argument("--OUTPUT", default=None, type=str)
 parser.add_argument("--tr_per", default=0.8, type=float)
 parser.add_argument("--model", default=None, type=str)
-parser.add_argument("--max_epoch", default=1000, type=float)
+parser.add_argument("--max_epoch", default=1000, type=int)
 
 args = parser.parse_args()
 
