@@ -17,7 +17,7 @@ parser.add_argument("--INPUT", default=None, type=str)
 parser.add_argument("--OUTPUT", default=None, type=str)
 parser.add_argument("--tr_per", default=0.8, type=float)
 parser.add_argument("--model", default=None, type=str)
-parser.add_argument("--max_epoch", default=0, type=float)
+parser.add_argument("--max_epoch", default=1000, type=float)
 
 args = parser.parse_args()
 
@@ -106,6 +106,9 @@ ROOT = args.ROOT
 INP = ROOT + '/' + args.INPUT
 OUT = ROOT + '/' + args.OUTPUT
 
+# Max epochs
+max_epoch = args.max_epoch
+
 # Listar todas las imagenes en input
 all_im = listdir(INP)
 
@@ -186,5 +189,5 @@ train(generator,
       dis_opt=dis_opt,
       device=device, 
       ini_epoch=ini_epoch,
-      max_epoch=1000,
+      max_epoch=max_epoch,
       it_val=100)
