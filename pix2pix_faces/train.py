@@ -83,15 +83,17 @@ def train(generator,
 
  			# Evaluate some images.
  			fig, ax = plt.subplots(4,3)
- 			for i in range(4):
- 				for i, (inp, targ) in enumerate(validation_loader):
- 					inp, targ = inp.to(device), targ.to(device)
+ 			inp, targ = next(iter(validation_loader))
+ 			inp, targ = inp.to(device), targ.to(device)
 
- 					output_image = generator(inp)
- 					ax[i,0].imshow(inp[0].data.cpu().numpy().transpose(1,2,0))
- 					ax[i,1].imshow(output_image[0].data.cpu().numpy().transpose(1,2,0))
- 					ax[i,2].imshow(targ[0].data.cpu().numpy().transpose(1,2,0))
- 			fig.saveimage('val_{}.png'.format(epoch))
+ 			output_image = generator(inp)
+
+ 			for i in range(4):
+ 				ax[i,0].imshow(inp[i].data.cpu().numpy().transpose(1,2,0))
+ 				ax[i,1].imshow(output_image[i].data.cpu().numpy().transpose(1,2,0))
+ 				ax[i,2].imshow(targ[i].data.cpu().numpy().transpose(1,2,0))
+
+ 			fig.savefig('val_{}.png'.format(epoch))
 
 # Direcciones a las imagenes.
 ROOT = args.ROOT
@@ -141,7 +143,7 @@ train_loader = torch.utils.data.DataLoader(
 
 validation_loader = torch.utils.data.DataLoader(
         validation_dataset,
-        batch_size=1,
+        batch_size=4,
         num_workers=0,
         pin_memory=True
     )
