@@ -1,6 +1,7 @@
 # Definiciones de generador y discriminador
 # Copiado de: 
 #https://github.com/Eiji-Kb/simple-pix2pix-pytorch/blob/master/models.py
+from __future__ import print_function
 
 import torch
 import torch.nn as nn

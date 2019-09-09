@@ -1,3 +1,4 @@
+from __future__ import print_function
 import argparse
 from model import Generator
 from PIL import Image

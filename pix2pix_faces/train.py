@@ -116,7 +116,7 @@ all_im = listdir(INP)
 np.random.shuffle(all_im)
 N = len(all_im)
 
-tr_dim = round(N * args.tr_per)
+tr_dim = int(round(N * args.tr_per))
 train_names = all_im[:tr_dim]
 validation_names = all_im[tr_dim:]
 
