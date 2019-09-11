@@ -37,9 +37,9 @@ Para ejecutar el entrenamiento se debe ejecutar el siguiente comando:
 ```bash
 python train.py --max_epoch=100000 
                 --ROOT=../../Images/ 
-				--INPUT=no-pixeled 
-				--OUTPUT=pixeled 
-				--tr_per=0.8
+		--INPUT=no-pixeled 
+		--OUTPUT=pixeled 
+		--tr_per=0.8
 ```
 
 Donde ```--tr_per``` es el porcentaje de datos que van al conjunto de entrenamiento, ```--ROOT``` debe ser el directorio que contiene ambas carpetas, ```--INPUT``` el nombre de la carpeta con las imágenes de entrada y ```--OUTPUT``` la carpeta con las imágenes objetivo. En caso de que queramos pixelar caras, ```--INPU
@@ -51,10 +51,10 @@ En caso de querer cargar un modelo para continuar entrenándolo se puede ejecuta
 ```bash
 python train.py --model=checkpoint.pth 
                 --max_epoch=100000 
-				--ROOT=../../Images/ 
-				--INPUT=no-pixeled 
-				--OUTPUT=pixeled 
-				--tr_per=0.8
+		--ROOT=../../Images/ 
+		--INPUT=no-pixeled 
+		--OUTPUT=pixeled 
+		--tr_per=0.8
 ```
 
 Durante el proceso de entrenamiento imprimirá imágenes cada 100 epochs, lo que permite ir visualizando los efectos del entrenamiento. De igual forma, cada 100 epochs guardará un checkpoint, con el nombre "checkpoint.pth".
