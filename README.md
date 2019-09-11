@@ -12,13 +12,14 @@ Esta implementación se ha utilizado para dar una imagen a la red y que pixele l
 - torchvision
 
 ## Ficheros
-* Carpetas:
-	- modelos: modelos preentrenados para comprobar los resultados.
-	- pix2pix_faces: Ficheros para ejecutar entrenamiento y visualización de resultados.
-		- dataloader.py: Clase para cargar datos y ejecutar transformaciones a las imágenes de entrada y salida.
-		- model.py: Clases del generador y discriminador, así como función para ejecutar checkpoints. En su mayoría copiado de [este proyecto.](https://github.com/Eiji-Kb/simple-pix2pix-pytorch/blob/master/models.py)
-		- train.py: En este fichero se engloba todo... carga las imágenes y ejecuta el entrenamiento.
-		- eval.py: Permite evaluar un modelo preentrenado.
+- pix2pix_faces: Ficheros para ejecutar entrenamiento y visualización de resultados.
+	- dataloader.py: Clase para cargar datos y ejecutar transformaciones a las imágenes de entrada y salida.
+	- model.py: Clases del generador y discriminador, así como función para ejecutar checkpoints. En su mayoría copiado de [este proyecto.](https://github.com/Eiji-Kb/simple-pix2pix-pytorch/blob/master/models.py)
+	- train.py: En este fichero se engloba todo... carga las imágenes y ejecuta el entrenamiento.
+	- eval.py: Permite evaluar un modelo preentrenado.
+
+- heat_map.ipynb: Notebook para evaluar un modelo entrenado y ver las regiones de mayor diferencia entre la imagen de entrada y salida.
+- pixel_faces.ipynb: Más o menos lo mismo que lo que hay en los ficheros en pix2pix_faces pero en Notebook.
 
 ## Uso
 ### Paso 1 - Obtener los datos de entrenamiento.
@@ -70,3 +71,5 @@ Lo más interesante para visualizar los resultados es emplear el Notebook "heat_
 [Imagen Original](https://www.flickr.com/photos/whitehouse/48144069691)
 
 A parte de ver cómo ha pixelado la imagen podemos veremos una tercera imagen que nos muestra qué zonas se han visto más modificadas, viendo que en general es capaz de solo pixelar la cara (y un poquito de alrededores).
+
+Nota: No puedo subir a GitHub los modelos entrenados pero se pueden obtener durante con el siguiente [link a Drive](https://drive.google.com/open?id=1OF-XhbLZ_YrMYwZJtpjUxiFJ_VBguhOx)
