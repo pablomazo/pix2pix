@@ -2,7 +2,7 @@
 ## Resumen.
 Implementación en PyTorch de la arquitectura Pix2Pix siguiendo el [artículo original](https://arxiv.org/pdf/1611.07004.pdf).
 
-Esta implementación se ha utilizado para dar una imagen a la red y que pixele las caras que encuentre. Se ha entrenado también el proceso inverso, en el cual dada una imagen pixelada la red debe reconstruir el rostro.
+Esta implementación se ha utilizado para dar una imagen a la red y que pixele las caras que encuentre. Se ha tratado de entrenar el proceso inverso, pero no se han obtenido unos resultados satisfactorios, bien porque el set de entrenamiento es muy pequeño o porque necesita mucho más tiempo de entrenamiento.
 
 ## Dependencias
 - PyTorch
@@ -29,6 +29,8 @@ En el caso de la obtención de imágenes pixeladas se han descagado un total de 
 En cuando a las imágenes seleccionadas se ha intentado encontrar imágenes grupales, retratos y gente de espalda (en cuyo caso la red no debería hacer nada).
 
 Las imágenes se guardan en dos carpetas distintas, teniendo las imágenes pixeladas y las no pixeladas el mismo nombre.
+
+No puedo subir el set de entrenamiento porque al descargar las imágenes no puse cuidado en filtrar aquellas con permiso para utilizarlas y modificarlas, pero se puede hacer uno una idea de las imágenes empleadas buscando en Google Imágenes "Vacaciones Familiares" y "Fotos retrato".
 
 ### Paso 2 - Entrenamiento.
 
