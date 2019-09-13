@@ -72,4 +72,4 @@ Lo más interesante para visualizar los resultados es emplear el Notebook "heat_
 
 A parte de ver cómo ha pixelado la imagen podemos veremos una tercera imagen que nos muestra qué zonas se han visto más modificadas, viendo que en general es capaz de solo pixelar la cara (y un poquito de alrededores).
 
-Nota: No puedo subir a GitHub los modelos entrenados pero se pueden obtener durante con el siguiente [link a Drive](https://drive.google.com/open?id=1OF-XhbLZ_YrMYwZJtpjUxiFJ_VBguhOx)
+Nota: No puedo subir a GitHub los modelos entrenados pero se pueden obtener durante un tiempo limitado con el siguiente [link a Drive].(https://drive.google.com/open?id=1OF-XhbLZ_YrMYwZJtpjUxiFJ_VBguhOx)
