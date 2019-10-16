@@ -44,8 +44,7 @@ python train.py --max_epoch=100000
 		--tr_per=0.8
 ```
 
-Donde ```--tr_per``` es el porcentaje de datos que van al conjunto de entrenamiento, ```--ROOT``` debe ser el directorio que contiene ambas carpetas, ```--INPUT``` el nombre de la carpeta con las imágenes de entrada y ```--OUTPUT``` la carpeta con las imágenes objetivo. En caso de que queramos pixelar caras, ```--INPU
-T``` será el directorio a las imágenes sin pixelar la cara y ```--OUTPUT``` el directorio a las imágenes con la cara pixelada.
+Donde ```--tr_per``` es el porcentaje de datos que van al conjunto de entrenamiento, ```--ROOT``` debe ser el directorio que contiene ambas carpetas, ```--INPUT``` el nombre de la carpeta con las imágenes de entrada y ```--OUTPUT``` la carpeta con las imágenes objetivo. En caso de que queramos pixelar caras, ```--INPUT``` será el directorio a las imágenes sin pixelar la cara y ```--OUTPUT``` el directorio a las imágenes con la cara pixelada.
 
 
 En caso de querer cargar un modelo para continuar entrenándolo se puede ejecutar:
