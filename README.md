@@ -1,40 +1,40 @@
 # pix2pix2pixel
-## Resumen.
-Implementación en PyTorch de la arquitectura Pix2Pix siguiendo el [artículo original](https://arxiv.org/pdf/1611.07004.pdf).
+[Spanish version](https://github.com/pablomazo/pix2pix/blob/master/README_ES.md)
 
-Esta implementación se ha utilizado para dar una imagen a la red y que pixele las caras que encuentre. Se ha tratado de entrenar el proceso inverso, pero no se han obtenido unos resultados satisfactorios, bien porque el set de entrenamiento es muy pequeño o porque necesita mucho más tiempo de entrenamiento.
+## Summary.
+PyTorch implementation of Pix2Pix architecture as propose in the [original article](https://arxiv.org/pdf/1611.07004.pdf).
 
-## Dependencias
+Pix2Pix architecture is used to detect and pixel faces from a given image. The inverse process was also tried although results were not as satisfactory, maybe because the training set was too small of more training time is necessary.
+
+## Dependencies
 - PyTorch
 - PIL
 - numpy
 - matplotlib
 - torchvision
 
-## Ficheros
-- pix2pix_faces: Ficheros para ejecutar entrenamiento y visualización de resultados.
-	- dataloader.py: Clase para cargar datos y ejecutar transformaciones a las imágenes de entrada y salida.
-	- model.py: Clases del generador y discriminador, así como función para ejecutar checkpoints. En su mayoría copiado de [este proyecto.](https://github.com/Eiji-Kb/simple-pix2pix-pytorch/blob/master/models.py)
-	- train.py: En este fichero se engloba todo... carga las imágenes y ejecuta el entrenamiento.
-	- eval.py: Permite evaluar un modelo preentrenado.
+## Files
+- pix2pix_faces: Files to execute training and visualization of results.
+	- dataloader.py: Class to load and execute the requiered transformations on input and output images.
+	- model.py: Generator and discriminator classes and function to save checkpoints. Mostly from [this proyect](https://github.com/Eiji-Kb/simple-pix2pix-pytorch/blob/master/models.py).
+	- train.py: Loading of images and training.
+	- eval.py: Evaluation of a pretrained model.
 
-- heat_map.ipynb: Notebook para evaluar un modelo entrenado y ver las regiones de mayor diferencia entre la imagen de entrada y salida.
-- pixel_faces.ipynb: Más o menos lo mismo que lo que hay en los ficheros en pix2pix_faces pero en Notebook.
+- heat_map.ipynb: Notebook to evaluate a pretrained model and visualize regions of maximum change between input and output images.
+- pixel_faces.ipynb: Almost the same that can be found in pix2pix_faces but in Notebook.
 
-## Uso
-### Paso 1 - Obtener los datos de entrenamiento.
+## Use
+### Step 1 - Get training data.
 
-En el caso de la obtención de imágenes pixeladas se han descagado un total de 183 imágenes de Google y se han pixelado una a una utilizando GIMP. Desde luego, la cantidad de datos de entrenamiento no es muy alta, pero como se verá más abajo los resultados han sido bastante satisfactorios, especialmente en el sentido de pixelar caras, resultado esperable por otro lado.
+A total number of 183 was downloaded from Google and pixeled with GIMP. Even though the training set is really small the results are quite satisfactory.
 
-En cuando a las imágenes seleccionadas se ha intentado encontrar imágenes grupales, retratos y gente de espalda (en cuyo caso la red no debería hacer nada).
+Variety in the images is desired. For this reason group photographs, portraits, back turned people (the net should change nothing in this images) were used as training set.
 
-Las imágenes se guardan en dos carpetas distintas, teniendo las imágenes pixeladas y las no pixeladas el mismo nombre.
+Images are saved in two folders, pixeled and not pixeled, having the images the same name in both of them.
 
-No puedo subir el set de entrenamiento porque al descargar las imágenes no puse cuidado en filtrar aquellas con permiso para utilizarlas y modificarlas, pero se puede hacer uno una idea de las imágenes empleadas buscando en Google Imágenes "Vacaciones Familiares" y "Fotos retrato".
+### Step 2 - Training.
 
-### Paso 2 - Entrenamiento.
-
-Para ejecutar el entrenamiento se debe ejecutar el siguiente comando:
+The training process is executed:
 
 ```bash
 python train.py --max_epoch=100000 
@@ -44,10 +44,9 @@ python train.py --max_epoch=100000
 		--tr_per=0.8
 ```
 
-Donde ```--tr_per``` es el porcentaje de datos que van al conjunto de entrenamiento, ```--ROOT``` debe ser el directorio que contiene ambas carpetas, ```--INPUT``` el nombre de la carpeta con las imágenes de entrada y ```--OUTPUT``` la carpeta con las imágenes objetivo. En caso de que queramos pixelar caras, ```--INPUT``` será el directorio a las imágenes sin pixelar la cara y ```--OUTPUT``` el directorio a las imágenes con la cara pixelada.
+where ```--tr_per``` is the percentage of data in the training set, ```--ROOT``` is the directory having both folders, ```--INPUT``` is the folder name of input images and ```--OUTPUT``` is the folder name with the target images. To pixel faces, ```--INPUT``` is the directory with not pixeled images and ```--OUTPUT``` the directory with the pixeled images.
 
-
-En caso de querer cargar un modelo para continuar entrenándolo se puede ejecutar:
+A pretrained model can be loaded, from which the training continues:
 
 ```bash
 python train.py --model=checkpoint.pth 
@@ -58,19 +57,16 @@ python train.py --model=checkpoint.pth
 		--tr_per=0.8
 ```
 
-Durante el proceso de entrenamiento imprimirá imágenes cada 100 epochs, lo que permite ir visualizando los efectos del entrenamiento. De igual forma, cada 100 epochs guardará un checkpoint, con el nombre "checkpoint.pth".
+Every 100 epochs a set of images in printed to check the training process. Also, a file "checkpoint.pth" is saved with the model parameters.
 
 
-## Paso 3 - Visualización de resultados.
-Lo más interesante para visualizar los resultados es emplear el Notebook "heat_map.ipynb". Siguiendo las intrucciones especificadas en el Notebook  podemos cargar un modelo preentrenado (a través de los ficheros .pth en la carpeta "modelos"), introducir una foto y ver el resultado, dependiendo del sentido en el que hayamos entrenado el modelo la pixelara o despixelará.
+## Step 3 - Results visualization.
+To visualize results it is recommended to use "heat_map.ipynb" notebook. Following the instructions in it, we can load a trained model, introduce an image, check the result and plot a heatmap with the regions of maximum change between input and output images:
 
-#### Pixelar caras
 ![Not exit](images/not-exist.png)
 [This person does not exist](https://thispersondoesnotexist.com/)
 
 ![G20](images/g20.png)
 [Imagen Original](https://www.flickr.com/photos/whitehouse/48144069691)
 
-A parte de ver cómo ha pixelado la imagen podemos veremos una tercera imagen que nos muestra qué zonas se han visto más modificadas, viendo que en general es capaz de solo pixelar la cara (y un poquito de alrededores).
-
-Nota: No puedo subir a GitHub los modelos entrenados pero se pueden obtener durante un tiempo limitado con el siguiente [link a Drive](https://drive.google.com/open?id=1OF-XhbLZ_YrMYwZJtpjUxiFJ_VBguhOx).
+It is possible to download this model from [Drive](https://drive.google.com/open?id=1OF-XhbLZ_YrMYwZJtpjUxiFJ_VBguhOx) for a limited time (depending on my space requierements).
