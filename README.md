@@ -60,7 +60,7 @@ python train.py --model=checkpoint.pth
 Every 100 epochs a set of images in printed to check the training process. Also, a file "checkpoint.pth" is saved with the model parameters.
 
 
-## Step 3 - Results visualization.
+### Step 3 - Results visualization.
 To visualize results it is recommended to use "heat_map.ipynb" notebook. Following the instructions in it, we can load a trained model, introduce an image, check the result and plot a heatmap with the regions of maximum change between input and output images:
 
 ![Not exit](images/not-exist.png)
